@@ -2,6 +2,8 @@
 
 set -axe
 
+cp -rf /home/steam/hlds/cstrike/maps.original/* /home/steam/hlds/cstrike/maps
+
 CONFIG_FILE="/home/steam/hlds/startup.cfg"
 
 if [ -r "${CONFIG_FILE}" ]; then
@@ -37,9 +39,9 @@ if [ -n "${RCON_PASSWORD}" ]; then
     OPTIONS+=("+rcon_password" "${RCON_PASSWORD}")
 fi
 
-# if [ -n "${ADMIN_STEAM}" ]; then
-    # echo "\"STEAM_${ADMIN_STEAM}\" \"\"  \"abcdefghijklmnopqrstu\" \"ce\"" >> "/home/steam/hlds/cstrike/addons/amxmodx/configs/users.ini"
-# fi
+if [ -n "${ADMIN_STEAM}" ]; then
+  echo "\"STEAM_${ADMIN_STEAM}\" \"\"  \"abcdefghijklmnopqrstu\" \"ce\"" >> "/home/steam/hlds/cstrike/addons/amxmodx/configs/users.ini"
+fi
 
 set > "${CONFIG_FILE}"
 
